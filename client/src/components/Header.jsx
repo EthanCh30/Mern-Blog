@@ -59,22 +59,27 @@ export default function Header() {
         </span>
         Blog
       </Link>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='flex-grow hidden lg:flex justify-center'>
         <TextInput
           type='text'
           placeholder='Search...'
           rightIcon={AiOutlineSearch}
-          className='hidden lg:inline'
+          className='w-1/2'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </form>
-      <Button className='w-12 h-10 lg:hidden' color='gray' pill>
+      <Button
+        className='w-12 h-10 lg:hidden flex items-center justify-center'
+        color='gray'
+        pill
+        onClick={() => navigate(`/search?searchTerm=${searchTerm}`)}
+      >
         <AiOutlineSearch />
       </Button>
-      <div className='flex gap-2 md:order-2'>
+      <div className='flex gap-2 md:order-2 items-center'>
         <Button
-          className='w-12 h-10 hidden sm:inline'
+          className='w-12 h-10 flex items-center justify-center'
           color='gray'
           pill
           onClick={() => dispatch(toggleTheme())}
@@ -116,9 +121,6 @@ export default function Header() {
         </Navbar.Link>
         <Navbar.Link active={path === '/about'} as={'div'}>
           <Link to='/about'>About</Link>
-        </Navbar.Link>
-        <Navbar.Link active={path === '/projects'} as={'div'}>
-          <Link to='/projects'>Projects</Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
